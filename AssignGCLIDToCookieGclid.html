@@ -1,0 +1,9 @@
+<!-- Assign GCLID to Cookie 34 -->
+<script>
+  if ({{GCLID in URL 34}}) {
+   // GCLID in URL 34 will check to see if the GCLID variable is true. make sure to create it!
+   //console.log('adwords traffic');
+   document.cookie = "gclid = {{GCLID in URL 34}}; path=/";
+  }
+  // if GCLID is in the URL, this if statement will asssign it to a cookie, and then you will need to collect the cookie in another variable!
+</script>
