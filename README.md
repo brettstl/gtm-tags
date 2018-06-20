@@ -1,4 +1,4 @@
-# READMME
+# READ ME
 
 ## assign GCLID to session
 1. Create a session scoped custom dimension called GCLID
