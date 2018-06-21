@@ -26,3 +26,7 @@ For ATC we also use
 
 
 ## GA Setting Variable
+
+
+## IP Tracking in GTM if you use set anonymizeIp to true in GTM
+https://www.simoahava.com/analytics/block-internal-traffic-gtm/
