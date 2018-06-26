@@ -1,0 +1,6 @@
+Regular Expression to only catpure the hompage of a site
+
+This will capture both "/" and "/?..."
+
+Regex:
+^/(\?(.*))?$
