@@ -1,7 +1,17 @@
 # READ ME
+This is my resource to better leverage Google Tag Manager. 
+This is not a repo that you download and add to your website, but a list of a la carte update to Google Tag Manager that can help track non-standard implementaiton.
 
-## Standard Custom Dimensions
-These custom dimensions should be included with all new accounts
+
+## Best Practices
+
+### Naming Conventions
+- for GTM tags use this format
+> Application - Type - Unique Attribute 
+Example: GA - Event - Hospital Contact Submit
+
+### Standard Custom Dimensions
+These custom dimensions should be included with all new accounts and need to be collected by GTM. 
 - GAID
 - SessionID
 - HitTimeStamp
@@ -10,6 +20,20 @@ These custom dimensions should be included with all new accounts
 
 For ATC we also use
 - Ministry
+
+### GA Setting Variable
+This GTM variable should be used as a universal variable for all tags in a container. 
+
+For cross-domain tracking you will need the following settings:
+- Cookie Domina = auto
+- allowLinker = true
+- Auto Link Domains (sites that will recieve cross-domain links)
+*make sure to add the source links to the referral exclusion list in the GA property admin*
+
+
+## Custom tags, triggers and variables
+These are bits of JS I have needed over the years to complete tasks that wont work with the standard GTM triggers and variables. 
+
 
 ### assign GCLID to session
 *GCLID can be used to push data back into AdWords. Like if you decide that an event should be a goal, you can push these goals into ADwords using GCLID as a primary key*
@@ -26,12 +50,11 @@ Note: This may be overkill. I could probably just look for GCLID in the URL and 
 1. Add Random Session ID as a custom dimension field in your GA setting variable
 
 
-## GA Setting Variable
+## Documentation in progress
 
-
-## IP Tracking in GTM if you use set anonymizeIp to true in GTM
+### IP Tracking in GTM if you use set anonymizeIp to true in GTM
 https://www.simoahava.com/analytics/block-internal-traffic-gtm/
 
 
-## Recude Google Analytics Payload length if it is too big
+### Recude Google Analytics Payload length if it is too big
 https://www.simoahava.com/analytics/automatically-reduce-google-analytics-payload-length/
