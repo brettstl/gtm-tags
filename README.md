@@ -2,12 +2,15 @@
 This is my resource to better leverage Google Tag Manager. 
 This is not a repo that you download and add to your website, but a list of a la carte update to Google Tag Manager that can help track non-standard implementaiton.
 
+Most of this is borrowed, and most of the borrowed stuff is from [Simo Ahava](https://www.simoahava.com/).
+
 
 ## Best Practices
 
 ### Naming Conventions
 - for GTM tags use this format
 > Application - Type - Unique Attribute 
+
 Example: GA - Event - Hospital Contact Submit
 
 ### Standard Custom Dimensions
@@ -20,6 +23,7 @@ These custom dimensions should be included with all new accounts and need to be 
 
 For ATC we also use
 - Ministry
+
 
 ### GA Setting Variable
 This GTM variable should be used as a universal variable for all tags in a container. 
@@ -49,12 +53,19 @@ Note: This may be overkill. I could probably just look for GCLID in the URL and 
 1. Add the RadmonSessionID as a js variable
 1. Add Random Session ID as a custom dimension field in your GA setting variable
 
+### YouTube State Change
+I found this great article from [Analytics mania](https://www.analyticsmania.com/post/youtube-tracking-google-tag-manager-solved/) for when the standard YouTube tracking will not work. This could cause some slow down on your site, so only use it as a last resort. 
+1. Add the listener tag and have it fire on all pages (on dom ready)
+1. makes sure to add the following DataLayer variables if you don't already have them: eventCategory, eventAction, eventLabel
+1. create the Universal GA event tag for the custom YouTube tracking. I tend to use the eventLabel as the event action, as it gives info like "video played," "75% video played", etc with the name of the video.
+1. create a Custom Event trigger for this tag taht fires on the Event name youtube
+
 
 ## Documentation in progress
 
 ### IP Tracking in GTM if you use set anonymizeIp to true in GTM
-https://www.simoahava.com/analytics/block-internal-traffic-gtm/
+[link](https://www.simoahava.com/analytics/block-internal-traffic-gtm/)
 
 
-### Recude Google Analytics Payload length if it is too big
-https://www.simoahava.com/analytics/automatically-reduce-google-analytics-payload-length/
+### Reduce Google Analytics Payload length if it is too big
+[link](https://www.simoahava.com/analytics/automatically-reduce-google-analytics-payload-length/)
