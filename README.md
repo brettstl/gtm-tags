@@ -9,9 +9,15 @@ Most of this is borrowed, and most of the borrowed stuff is from [Simo Ahava](ht
 
 ### Naming Conventions
 - for GTM tags use this format
-> Application - Type - Unique Attribute 
+> Application - Type - Unique Attribute - folder
 
-Example: GA - Event - Hospital Contact Submit
+Example: GA - Event - Hospital Contact Submit - shared
+
+- for GTM trigger use this format
+> Trigger - Action Driving Trigger - folder
+
+- for GTM variables use this format
+> VAR - attribute of varaible
 
 ### Standard Custom Dimensions
 These custom dimensions should be included with all new accounts and need to be collected by GTM. 
@@ -60,8 +66,34 @@ I found this great article from [Analytics mania](https://www.analyticsmania.com
 1. create the Universal GA event tag for the custom YouTube tracking. I tend to use the eventLabel as the event action, as it gives info like "video played," "75% video played", etc with the name of the video.
 1. create a Custom Event trigger for this tag taht fires on the Event name youtube
 
+An example can be found in the ATC template container.
+
+### Wildcard CSS Selectors
+[link](https://www.simoahava.com/analytics/use-wildcard-css-selectors-with-all-elements-triggers/)
+
+This is a simple rule I was too dense to realize, but you can use a wildcard symbol in your match CSS select to select all posssible elements that are children of that element. Kinda cool. 
+
+In this example, I can capture any click on the a tag, or any child element of that a tag. 
+> a[href*="/contact"], a[href*="/contact"] * (This example can be found in the creative anvil container)
+
+
+### Outbound link check
+Create a regex variable that looks for two matches
+one is the {{page hostname}}
+the second is ^/
+
+This should catch 95% of internal links. Anything else could be counted as an outbound link. This is useful when creating template tags you want to quckly added to a lot of different sites. 
+
+Example for creativeanvil.com VAR - Compare Hostname to Click URL Regex - 2018
 
 ## Documentation in progress
+
+### Validate a form in GTM
+In some cases you will need to vaildate a form in GTM. This is not ideal, but maybe the best case for AJAX forms I have found so far.
+
+If you want to validate if a form field has text, see TextAreahasValuebooleanVariable.js
+It will return true of their is text and false if there is no text
+
 
 ### IP Tracking in GTM if you use set anonymizeIp to true in GTM
 [link](https://www.simoahava.com/analytics/block-internal-traffic-gtm/)
@@ -69,3 +101,9 @@ I found this great article from [Analytics mania](https://www.analyticsmania.com
 
 ### Reduce Google Analytics Payload length if it is too big
 [link](https://www.simoahava.com/analytics/automatically-reduce-google-analytics-payload-length/)
+
+## Resources
+
+### CSS Selector Examples
+This tool shows you how elements would be selected on page based on your CSS selector. 
+[link](https://www.w3schools.com/cssref/trysel.asp)
