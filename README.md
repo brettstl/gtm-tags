@@ -44,6 +44,15 @@ For cross-domain tracking you will need the following settings:
 ## Custom tags, triggers and variables
 These are bits of JS I have needed over the years to complete tasks that wont work with the standard GTM triggers and variables. 
 
+### Trigger only fires on homepage
+
+Use this regex test on the page path 
+``` ^/(\?(.*))?$
+```
+
+## Empty strings and undefined values
+If a value is undefined, you can create a trigger rule that equals 'undefined'
+But, if a blank strng is passed, you need to use a regex match for ^$
 
 ### assign GCLID to session
 *GCLID can be used to push data back into AdWords. Like if you decide that an event should be a goal, you can push these goals into ADwords using GCLID as a primary key*
@@ -78,15 +87,39 @@ In this example, I can capture any click on the a tag, or any child element of t
 
 
 ### Outbound link check
-Create a regex variable that looks for two matches
+Create a regex variable that looks for the following matches in the Click URL
 one is the {{page hostname}}
 the second is ^/
+you may also want to check for emty string with ^$
 
 This should catch 95% of internal links. Anything else could be counted as an outbound link. This is useful when creating template tags you want to quckly added to a lot of different sites. 
 
 Example for creativeanvil.com VAR - Compare Hostname to Click URL Regex - 2018
 
+
+## Wait for HTML element to become visable
+Occasionally elements on the page will not be availiable until after the DOM is ready and the window has loaded. You would need a custom listner tag for these cases that fires a datalayer event once the element is visable. 
+
+## Getting values of GTM dataLayer push events in the console.
+USe this code to get dataLayer events 
+
+``` google_tag_manager['GTM-MLZ64TT'].dataLayer.get({split: function() { return [] }});
+```
+
+(repalce with the GTM container on the site)
+
+You could also do this to pull a dataLayer push from one GTM container into another GTM container!
+
+
 ## Documentation in progress
+
+### clear values out of the dataLayer using 
+``` dataLayer.push({_clear: true}); 
+```
+
+I'm not getting this to work, but I don't quite understand the syntax and I could not find anything about this. I need to do more research. Was discovered on the #measure Slack
+
+
 
 ### Validate a form in GTM
 In some cases you will need to vaildate a form in GTM. This is not ideal, but maybe the best case for AJAX forms I have found so far.
@@ -101,6 +134,16 @@ It will return true of their is text and false if there is no text
 
 ### Reduce Google Analytics Payload length if it is too big
 [link](https://www.simoahava.com/analytics/automatically-reduce-google-analytics-payload-length/)
+First, you should find out if your hit payload lenght is getting too big. You can do that by creating a customtask that collectes this data and then passes this data to a custom dimension. See hitPayloadLengthCustomDimension. 
+Last, you update the Google Analyitcs variable to include the fiel name customTask with your custom js variable as the value. 
+
+### Facebook Pixels
+In addition to the 9 standard events, you can create custom perameters to customize each activity collected. You will need to use Custom Conversion to segment by specific custom perameters. See FacebookPixelCode.HTLM for examples of event tracking. 
+
+### Downnload Links
+
+### utm builder
+https://www.terminusapp.com/
 
 ## Resources
 

@@ -1,0 +1,26 @@
+<script type="application/javascript">
+  var creativeanvilIP = /47\.50\.186\.58/i;
+  var yxgenomics216 = /^216\.84\.39\.24[1-6]$/i;
+  var yxgenomics50 = /^50\.58\.42\.(21[7-9]|22[0-2])$/i;
+  var yxgenomics64 = /^64\.129\.221\.(14[5-9]|15[0-8])$/i;
+  var yxgenomics66 = /^66\.199\.12\.([1-9]|1[0-4])$/i;
+  function getIP(json) {
+    //console.log(json.ip);
+    if (creativeanvilIP.test(json.ip) {
+        	dataLayer.push({"event":"ipEvent","usersource" : "agency"});
+        } else if(yxgenomics216.test(json.ip) {
+        	dataLayer.push({"event":"ipEvent","usersource" : "internal216"});
+        } else if(yxgenomics50.test(json.ip) {
+            dataLayer.push({"event":"ipEvent","usersource" : "internal50"});      
+        } else if(yxgenomics64.test(json.ip) {
+             dataLayer.push({"event":"ipEvent","usersource" : "internal64"});     
+        } else if(yxgenomics66.test(json.ip) {
+             dataLayer.push({"event":"ipEvent","usersource" : "internal66"});     
+        } else {
+          dataLayer.push({"event":"ipEvent","usersource" : "unknown"});
+        }
+  		
+  }
+</script>
+ 
+<script type="application/javascript" src="https://api.ipify.org?format=jsonp&callback=getIP"></script>
